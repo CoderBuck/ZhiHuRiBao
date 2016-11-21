@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.buck.zhihuribao.MainActivity;
 import com.buck.zhihuribao.R;
 import com.buck.zhihuribao.data.bean.SplashImageBean;
 import com.buck.zhihuribao.network.ApiStoresGenerator;
