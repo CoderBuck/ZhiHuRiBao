@@ -32,4 +32,5 @@ dependencies {
     // Banner
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'cn.bingoogolapple:bga-banner:2.0.9'
+    compile 'com.android.support:design:24.2.1'
 }
