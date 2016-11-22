@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.buck.zhihuribao.R;
-import com.buck.zhihuribao.adapter.TestAdapter;
+import com.buck.zhihuribao.adapter.HomeRecyclerAdapter;
 import com.buck.zhihuribao.data.bean.HomePageBean;
 import com.buck.zhihuribao.network.ApiStoresGenerator;
 import com.buck.zhihuribao.network.service.ApiStores;
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private BGABanner mBanner;
 
+    private HomeRecyclerAdapter mHomeRecyclerAdapter;
     private List<HomePageBean> mList = new ArrayList<>();
 
     private ApiStores api;
@@ -57,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         setStatusBarTranslucent();
         bindViews();
-        setRecyclerData();
-        getData();
+        loadData();
 
     }
 
@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
         mBanner = (BGABanner) findViewById(R.id.banner);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle);
         mNavigationView = (NavigationView) findViewById(R.id.navigation);
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setTitle("");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -100,14 +100,16 @@ public class MainActivity extends AppCompatActivity {
                         .into((ImageView)view);
             }
         });
+
+
     }
 
-    private void getData() {
+    private void loadData() {
         Call<HomePageBean> call = api.getHomePage();
         call.enqueue(new Callback<HomePageBean>() {
             @Override
             public void onResponse(Call<HomePageBean> call, Response<HomePageBean> response) {
-                HomePageBean bean = response.body();
+                final HomePageBean bean = response.body();
                 Log.d(TAG, "onResponse: "+bean.getTop_stories().size());
                 List<String> imgs = new ArrayList<String>();
                 List<String> tips = new ArrayList<String>();
@@ -116,6 +118,17 @@ public class MainActivity extends AppCompatActivity {
                     tips.add(bean.getTop_stories().get(i).getTitle());
                 }
                 mBanner.setData(imgs,tips);
+
+                mBanner.setOnItemClickListener(new BGABanner.OnItemClickListener() {
+                    @Override
+                    public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
+                        int newsId = bean.getTop_stories().get(position).getId();
+                        NewsActivity.start(MainActivity.this,newsId);
+                    }
+                });
+
+                mHomeRecyclerAdapter = new HomeRecyclerAdapter(bean,MainActivity.this);
+                mRecyclerView.setAdapter(mHomeRecyclerAdapter);
             }
 
             @Override
@@ -125,14 +138,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setRecyclerData() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            list.add(i+"");
-        }
-        TestAdapter adapter = new TestAdapter(list);
-        mRecyclerView.setAdapter(adapter);
-    }
 
 
     @Override

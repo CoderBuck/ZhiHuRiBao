@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimary">
 
 
     <!-- letterSpacing ：字符间距 -->
@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:letterSpacing="-0.09"
-        android:text="MARVEL"
+        android:text="ZHIHU"
         android:textColor="@android:color/white"
         android:textScaleX="0.65"
         android:textSize="64sp"
