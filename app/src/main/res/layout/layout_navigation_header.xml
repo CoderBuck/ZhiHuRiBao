@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:letterSpacing="-0.09"
-        android:text="ZHIHU"
+        android:text="ZHIHUDAILY"
         android:textColor="@android:color/white"
         android:textScaleX="0.65"
         android:textSize="64sp"

@@ -40,6 +40,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
         bindViews();
         getData();
+        autoSkip();
 
     }
 
@@ -73,6 +74,14 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    private void autoSkip() {
+        mSkip_text.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            }
+        },3000);
+    }
 
     @Override
     public void onClick(View v) {
