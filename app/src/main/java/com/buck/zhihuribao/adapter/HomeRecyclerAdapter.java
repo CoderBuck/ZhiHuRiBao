@@ -92,7 +92,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             news_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int newsId = mBean.getStories().get(getLayoutPosition()-1).getId();
+                    int newsId = mBean.getStories().get(getLayoutPosition()).getId();
                     NewsActivity.start(mContext,newsId);
                 }
             });

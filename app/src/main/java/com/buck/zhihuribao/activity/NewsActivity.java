@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.buck.zhihuribao.R;
 import com.buck.zhihuribao.data.bean.NewsBean;
@@ -90,23 +91,23 @@ public class NewsActivity extends AppCompatActivity {
         call.enqueue(new Callback<NewsBean>() {
             @Override
             public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
-                Log.d(TAG, "onResponse: ");
                 NewsBean bean = response.body();
-                if (bean == null) {
-                    Log.d(TAG, "onResponse: bean == null");
-                }
                 mNews_Title.setText(bean.getTitle());
-                mNews_Web.loadDataWithBaseURL("about:blank",bean.getBody(),"text/html", "utf-8", null);
                 Glide.with(NewsActivity.this)
                         .load(bean.getImage())
                         .centerCrop()
                         .crossFade()
                         .into(mNews_Img);
+
+                String css = "<link rel=\"stylesheet\" href=\"file:///android_asset/css/news.css\" type=\"text/css\">";
+                String html = "<html><head>" + css + "</head><body>" + bean.getBody() + "</body></html>";
+                html=html.replace("<div class=\"img-place-holder\">", "");
+                mNews_Web.loadDataWithBaseURL("x-data://base",html,"text/html", "utf-8", null);
             }
 
             @Override
             public void onFailure(Call<NewsBean> call, Throwable t) {
-
+                Toast.makeText(NewsActivity.this, "加载失败...", Toast.LENGTH_SHORT).show();
             }
         });
     }
