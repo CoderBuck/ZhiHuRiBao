@@ -36,4 +36,6 @@ dependencies {
     compile 'cn.bingoogolapple:bga-banner:2.0.9'
     //BRVAH
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.6.1'
+    //custom tab
+    compile 'com.android.support:customtabs:24.2.1'
 }
