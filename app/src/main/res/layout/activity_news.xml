@@ -6,50 +6,109 @@
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="300dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:titleEnabled="false">
 
             <ImageView
                 android:id="@+id/news_img"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"/>
+
             <TextView
                 android:id="@+id/news_title"
-                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:paddingBottom="20dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="20dp"
-                tools:text="新闻标题"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                tools:text="新闻标题"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:contentInsetStart="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="18dp"/>
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <ImageView
+                    android:id="@+id/menu_back"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_arrow_back_white_24dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp">
+                    <ImageButton
+                        android:id="@+id/menu_share"
+                        android:src="@drawable/ic_share_white_24dp"
+                        android:padding="12dp"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageButton
+                        android:id="@+id/menu_love"
+                        android:padding="12dp"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:src="@drawable/selector_love"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:id="@+id/menu_comment"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:drawableLeft="@drawable/ic_rate_review_white_24dp"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="4dp"
+                        android:text="123"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:id="@+id/menu_zan"
+                        android:padding="12dp"
+                        android:drawableLeft="@drawable/ic_thumb_up_white_24dp"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="4dp"
+                        android:text="123"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+            </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <WebView
             android:id="@+id/news_web"

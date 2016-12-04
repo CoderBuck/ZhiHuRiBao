@@ -19,8 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.NewsActivity"/>
+        <activity
+            android:theme="@style/AppTheme.WithNavDrawer"
+            android:name=".activity.MainActivity"/>
+        <activity
+            android:theme="@style/AppTheme.WithNavDrawer"
+            android:name=".activity.NewsActivity"/>
 
     </application>
 

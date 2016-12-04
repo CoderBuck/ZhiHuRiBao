@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_share"
+          android:title="分享"
+          android:icon="@android:drawable/ic_menu_share"
+          app:showAsAction="always"/>
+
+    <item android:id="@+id/action_love"
+          android:title="收藏"
+          android:icon="@drawable/selector_love"
+          app:showAsAction="always"/>
+
+
+    <item android:id="@+id/action_comment"
+          android:title=""
+          android:actionLayout="@layout/layout_comment_menu"
+          app:showAsAction="always"/>
+
+    <item android:id="@+id/action_zan"
+          android:title="32"
+          android:icon="@drawable/ic_thumb_up_white_24dp"
+          app:showAsAction="never"/>
+
+</menu>
