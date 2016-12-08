@@ -10,6 +10,7 @@
     tools:context="com.buck.zhihuribao.activity.MainActivity">
 
     <!--内容-->
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
         android:fitsSystemWindows="true"
@@ -21,13 +22,14 @@
             android:id="@+id/appbar"
             android:fitsSystemWindows="true"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="@dimen/app_bar_height">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:fitsSystemWindows="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:titleEnabled="false"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:contentScrim="?attr/colorPrimary">
 
@@ -47,6 +49,9 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
+                    app:title="首页"
+                    app:navigationIcon="@drawable/ic_menu_black_24dp"
+                    app:titleTextColor="@android:color/white"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
             </android.support.design.widget.CollapsingToolbarLayout>

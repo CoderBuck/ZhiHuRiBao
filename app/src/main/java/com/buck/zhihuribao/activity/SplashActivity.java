@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
         bindViews();
         getData();
-        autoSkip();
+//        autoSkip();
 
     }
 
@@ -68,7 +68,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onFailure(Call<SplashImageBean> call, Throwable t) {
-                Toast.makeText(SplashActivity.this, "获取图片出错...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, "获取splash图片出错...", Toast.LENGTH_SHORT).show();
             }
         });
 

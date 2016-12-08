@@ -1,7 +1,8 @@
 package com.buck.zhihuribao.network.service;
 
-import com.buck.zhihuribao.data.bean.HomePageBean;
-import com.buck.zhihuribao.data.bean.NewsBean;
+import com.buck.zhihuribao.data.bean.OldNewsBean;
+import com.buck.zhihuribao.data.bean.TodayNewsBean;
+import com.buck.zhihuribao.data.bean.NewsDetailBean;
 import com.buck.zhihuribao.data.bean.SplashImageBean;
 import com.buck.zhihuribao.network.HttpUrl;
 
@@ -18,9 +19,12 @@ public interface ApiStores {
     @GET(HttpUrl.splashImage)
     Call<SplashImageBean> getSplashImage();
 
-    @GET(HttpUrl.homePage)
-    Call<HomePageBean> getHomePage();
+    @GET(HttpUrl.todayNews)
+    Call<TodayNewsBean> getHomePage();
 
-   @GET(HttpUrl.news)
-    Call<NewsBean> getNews(@Path("news_id") int news_id);
+   @GET(HttpUrl.newsDetail)
+    Call<NewsDetailBean> getNewsDetail(@Path("news_id") int news_id);
+
+    @GET(HttpUrl.oldNews)
+    Call<OldNewsBean> getOldNews(@Path("date") String date);
 }

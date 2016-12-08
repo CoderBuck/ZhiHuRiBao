@@ -1,6 +1,5 @@
 package com.buck.zhihuribao.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.buck.zhihuribao.R;
-import com.buck.zhihuribao.activity.NewsActivity;
-import com.buck.zhihuribao.data.bean.HomePageBean;
+import com.buck.zhihuribao.activity.NewsDetailActivity;
+import com.buck.zhihuribao.data.bean.StoriesBean;
+import com.buck.zhihuribao.utils.DateUtils;
 import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 /**
  * Created by CoderBuck on 2016/11/22
@@ -20,36 +22,54 @@ import com.bumptech.glide.Glide;
 
 
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static final int DATE = 1;
-    public static final int NEWS = 2;
-    public HomePageBean mBean;
-    private Context mContext;
+    public static final String TAG = "HomeRecyclerAdapter";
+    private static final int DATE = 1;
+    private static final int NEWS = 2;
+    private static final int FOOTER = 3;
+    private List<Object> items;
 
-    public HomeRecyclerAdapter(HomePageBean bean,Context context) {
-        mBean = bean;
-        mContext=context;
+    public HomeRecyclerAdapter(List<Object> items) {
+        this.items=items;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        Object item = items.get(position);
+        if (item instanceof String)
+            return DATE;
+        else if (item instanceof StoriesBean)
+            return NEWS;
+        else
+            return FOOTER;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = null;
+        View view;
         if (viewType == DATE) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_date, parent, false);
             return new DateHolder(view);
-        } else {
+        } else if (viewType == NEWS) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_news, parent, false);
             return new NewsHolder(view);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_footer, parent, false);
+            return new FooterHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Object item = items.get(position);
         if (holder instanceof DateHolder) {
-            ((DateHolder) holder).date.setText(mBean.getDate());
-        } else {
-            ((NewsHolder)holder).news_title.setText(mBean.getStories().get(position).getTitle());
-            Glide.with(mContext)
-                    .load(mBean.getStories().get(position).getImages().get(0))
+            ((DateHolder) holder).date.setText(DateUtils.parseDate((String)item));
+
+        } else if (holder instanceof NewsHolder) {
+            StoriesBean bean = (StoriesBean) item;
+            ((NewsHolder) holder).bean = bean;
+            ((NewsHolder) holder).news_title.setText(bean.getTitle());
+            Glide.with(((NewsHolder) holder).news_image.getContext())
+                    .load(bean.getImages().get(0))
                     .centerCrop()
                     .crossFade()
                     .into(((NewsHolder) holder).news_image);
@@ -58,18 +78,10 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return mBean==null?0:mBean.getStories().size();
+        return items.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0) {
-            return DATE;
-        }
-        return NEWS;
-    }
-
-    private class DateHolder extends RecyclerView.ViewHolder {
+    private static class DateHolder extends RecyclerView.ViewHolder {
         TextView date;
 
         DateHolder(View itemView) {
@@ -78,7 +90,8 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    private class NewsHolder extends RecyclerView.ViewHolder {
+     private static class NewsHolder extends RecyclerView.ViewHolder {
+        StoriesBean bean;
         LinearLayout news_layout;
         ImageView news_image;
         TextView news_title;
@@ -92,10 +105,18 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             news_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int newsId = mBean.getStories().get(getLayoutPosition()).getId();
-                    NewsActivity.start(mContext,newsId);
+                    int newsId = bean.getId();
+                    NewsDetailActivity.start(v.getContext(),newsId);
                 }
             });
         }
     }
+
+    private static class FooterHolder extends RecyclerView.ViewHolder {
+
+        public FooterHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
 }

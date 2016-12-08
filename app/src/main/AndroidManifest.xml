@@ -24,7 +24,7 @@
             android:name=".activity.MainActivity"/>
         <activity
             android:theme="@style/AppTheme.WithNavDrawer"
-            android:name=".activity.NewsActivity"/>
+            android:name=".activity.NewsDetailActivity"/>
 
     </application>
 

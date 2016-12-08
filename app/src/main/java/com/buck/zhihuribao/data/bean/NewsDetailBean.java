@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 
-public class NewsBean {
+public class NewsDetailBean {
 
     /**
      * body : <div class="main-wrap content-wrap">
