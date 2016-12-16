@@ -7,55 +7,66 @@
             android:title="首页" />
 
         <item
-            android:titleCondensed="123"
+            android:titleCondensed="13"
             android:id="@+id/everyday_psychology"
             android:icon="@mipmap/ic_launcher"
             android:title="日常心理学" />
 
         <item
+            android:titleCondensed="12"
             android:id="@+id/user_recommended_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="用户推荐日报" />
 
         <item
+            android:titleCondensed="3"
             android:id="@+id/film_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="电影日报" />
 
         <item
+            android:titleCondensed="11"
             android:id="@+id/no_boring"
             android:icon="@mipmap/ic_launcher"
             android:title="不许无聊" />
 
         <item
+            android:titleCondensed="4"
             android:id="@+id/design_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="设计日报" />
         <item
+            android:titleCondensed="5"
             android:id="@+id/big_company_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="大公司日报" />
         <item
+            android:titleCondensed="6"
             android:id="@+id/financial_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="财经日报" />
         <item
+            android:titleCondensed="10"
             android:id="@+id/internet_security"
             android:icon="@mipmap/ic_launcher"
             android:title="互联网安全" />
         <item
+            android:titleCondensed="2"
             android:id="@+id/start_game"
             android:icon="@mipmap/ic_launcher"
             android:title="开始游戏" />
         <item
+            android:titleCondensed="7"
             android:id="@+id/music_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="音乐日报" />
         <item
+            android:titleCondensed="9"
             android:id="@+id/cartoon_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="动漫日报" />
         <item
+            android:titleCondensed="8"
             android:id="@+id/sport_daily"
             android:icon="@mipmap/ic_launcher"
             android:title="体育日报" />

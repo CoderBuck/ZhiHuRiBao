@@ -90,33 +90,8 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-     private static class NewsHolder extends RecyclerView.ViewHolder {
-        StoriesBean bean;
-        LinearLayout news_layout;
-        ImageView news_image;
-        TextView news_title;
 
-        NewsHolder(View itemView) {
-            super(itemView);
-            news_layout = (LinearLayout) itemView.findViewById(R.id.news_layout);
-            news_image= (ImageView) itemView.findViewById(R.id.image_item);
-            news_title= (TextView) itemView.findViewById(R.id.title_item);
 
-            news_layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int newsId = bean.getId();
-                    NewsDetailActivity.start(v.getContext(),newsId);
-                }
-            });
-        }
-    }
 
-    private static class FooterHolder extends RecyclerView.ViewHolder {
-
-        public FooterHolder(View itemView) {
-            super(itemView);
-        }
-    }
 
 }

@@ -45,4 +45,6 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.6.1'
     //custom tab
     compile 'com.android.support:customtabs:25.0.1'
+    //circle image view
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

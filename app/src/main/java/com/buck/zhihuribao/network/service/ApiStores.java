@@ -1,6 +1,7 @@
 package com.buck.zhihuribao.network.service;
 
 import com.buck.zhihuribao.data.bean.OldNewsBean;
+import com.buck.zhihuribao.data.bean.OtherNewsBean;
 import com.buck.zhihuribao.data.bean.TodayNewsBean;
 import com.buck.zhihuribao.data.bean.NewsDetailBean;
 import com.buck.zhihuribao.data.bean.SplashImageBean;
@@ -27,4 +28,7 @@ public interface ApiStores {
 
     @GET(HttpUrl.oldNews)
     Call<OldNewsBean> getOldNews(@Path("date") String date);
+
+    @GET(HttpUrl.otherNews)
+    Call<OtherNewsBean> getOtherNews(@Path("id") String id);
 }
